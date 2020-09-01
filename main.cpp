@@ -1,10 +1,14 @@
 #include <string>
 #include <vector>
+#include <fstream>
 
-
-#include "fmt/core.h"
+#define FMT_HEADER_ONLY
+#include "fmt/format.h"
 #include "fmt/chrono.h"
+#include "fmt/ranges.h"
+#include "fmt/os.h"
 
+#define SPDLOG_FMT_EXTERNAL_HO
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
@@ -20,15 +24,18 @@ int main() {
   filelog.get()->warn("Sample Warn output.");
   filelog.get()->error("Sample Error output.");
 
-  // std::string s = fmt::format("I'd rather be {1} than {0}.", "right", "happy");
+  std::string s = fmt::format("I'd rather be {1} than {0}.", "right", "happy");
 
   fmt::print("Hello world\n");
 
-  // using namespace std::literals::chrono_literals;
-  // fmt::print("Default format: {} {}\n", 42s, 100ms);
-  // fmt::print("strftime-like format: {:%H:%M:%S}\n", 3h + 15min + 30s);
+  using namespace std::literals::chrono_literals;
+  fmt::print("Default format: {} {}\n", 42s, 100ms);
+  fmt::print("strftime-like format: {:%H:%M:%S}\n", 3h + 15min + 30s);
   std::vector<int> v = {1, 2, 3};
-  // fmt::print("{}\n", v);
+  fmt::print("{}\n", v);
+
+  // auto out = fmt::output_file("guide.txt");
+  // out.print("Don't {}\n", "Panic");
 
   return 0;
 }
