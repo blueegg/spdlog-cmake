@@ -25,6 +25,9 @@ FetchContent_Declare(json
 FetchContent_MakeAvailable(json)
 
 set(CPR_FORCE_USE_SYSTEM_CURL ON CACHE INTERNAL "")
+set(CPR_BUILD_TESTS OFF CACHE INTERNAL "")
+set(CPR_BUILD_TESTS_SSL OFF CACHE INTERNAL "")
+set(CPR_USE_SYSTEM_GTEST ON CACHE INTERNAL "")
 FetchContent_Declare(cpr 
     GIT_REPOSITORY https://hub.fastgit.org/whoshuu/cpr.git
     GIT_TAG 1.6.0
